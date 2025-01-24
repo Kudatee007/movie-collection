@@ -40,9 +40,8 @@ header h1 {
 }
 
 .movie-card img {
-  width: 150px;
-  height: 200px;
-  border-radius: 8px;
+  width: 100%;
+  height: auto;
 }
 
 .movie-title {
