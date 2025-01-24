@@ -68,3 +68,14 @@ header h1 {
   display: flex;
   justify-content: center;
 }
+
+.genre-filter {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#genre-select {
+  padding: 10px;
+  font-size: 16px;
+  min-width: 200px;
+}

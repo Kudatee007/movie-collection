@@ -1,9 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    loadMovieCards();
-});
-
-
-function loadMovieCards() {
     const sampleMovies = [
         {
           "title": "Better Man",
@@ -75,11 +70,16 @@ function loadMovieCards() {
           "description": "Two grifters team up to pull off the ultimate con.",
           "poster": "images/thesting.png"
         }
-      ]
-      ;
+    ];
 
+    // Render movies
     renderMovies(sampleMovies);
-}
+    
+    // Create genre filter
+    createGenreFilter(sampleMovies);
+});
+
+//function for rendering movies
 
 function renderMovies(movies) {
     const movieList = document.getElementById('movie-list');
@@ -104,4 +104,62 @@ function renderMovies(movies) {
         // Append to the movie list
         movieList.appendChild(movieCard);
     });
+}
+
+
+//function for creating genre filter
+
+function createGenreFilter(movies) {
+    // Extract unique genres
+    const genres = [...new Set(movies.flatMap(movie => 
+        movie.genre.split('/')))].sort();
+    
+    // Create filter dropdown
+    const filterContainer = document.createElement('div');
+    filterContainer.classList.add('genre-filter');
+    
+    const select = document.createElement('select');
+    select.id = 'genre-select';
+    
+    // Add default "All Genres" option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'All Genres';
+    select.appendChild(defaultOption);
+    
+    // Add genre options
+    genres.forEach(genre => {
+        const option = document.createElement('option');
+        option.value = genre.trim();
+        option.textContent = genre.trim();
+        select.appendChild(option);
+    });
+    
+    // Add event listener for filtering
+    select.addEventListener('change', (e) => {
+        const selectedGenre = e.target.value;
+        filterMoviesByGenre(selectedGenre, movies);
+    });
+    
+    filterContainer.appendChild(select);
+    
+    // Ensure we're inserting before the movie list
+    const main = document.querySelector('main');
+    const movieList = document.getElementById('movie-list');
+    main.insertBefore(filterContainer, movieList);
+}
+
+function filterMoviesByGenre(genre, movies) {
+    if (!genre) {
+        // If no genre selected, show all movies
+        renderMovies(movies);
+        return;
+    }
+    
+    // Filter movies that include the selected genre
+    const filteredMovies = movies.filter(movie => 
+        movie.genre.split('/').some(g => g.trim() === genre)
+    );
+    
+    renderMovies(filteredMovies);
 }
