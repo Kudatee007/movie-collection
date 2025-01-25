@@ -58,8 +58,11 @@ git checkout -b development
 - `git add .` - Stage changes for commit.
 - `git commit -m "Descriptive message"` - Commit staged changes.
 - `git push origin [branch-name]` - Push changes to the remote repository.
+- Submitted pull requests for code review.
+- Merged into the `development` branch after approval.
 - `git pull origin [branch-name]` - Pull updates from the remote branch.
 - `git fetch origin` - Fetch all remote branches.
+- Merged the `development` branch into `main` after completing all features.
 
 
 ## Git Workflow Steps
@@ -138,6 +141,14 @@ git checkout -b development
 - Developed the JavaScript functionality for movie rendering.
 - Implemented genre filtering logic.
 - Contributed to the README documentation.
+
+## Screenshots of Terminal Operations
+- Screenshot of Git setup and Directory Structure:
+  ![Git Setup and Directory Structure](assets/screenshots/)
+
+## Pull Request History
+- Screenshot of pull requests:
+  ![Pull Request List](assets/screenshots/pullrequesthistory.png)
 
 
 ## Lessons Learned from Collaboration
